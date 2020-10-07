@@ -66,6 +66,8 @@
 - Who is there?
 //The % command is similar to + used for triggers, except it looks at the bot's previous response to the user 
 
++ অই
+- কি
 + i am*
 %who is there?
 //<formal> tag is used to capatialize first character of name provided by user 
