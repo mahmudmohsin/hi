@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+		<meta charset="UTF-8">
+        <title>Service Client CHU</title>
+        <script src="libraries/rivescript.js"></script>
+        <script src="libraries/jquery.js"></script>
+        <style type="text/css">
+* {
+    margin: 0;
+    padding: 0;
+    font-family: tahoma, sans-serif;
+    box-sizing: border-box;
+}
+
+
+.chatbox {
+    fill-opacity: .5;
+    width: 100%;
+    min-width: 100%;
+    height: 420px;
+    background: #147990;
+    padding: 3px;
+    margin: 0px auto;
+    box-shadow: 0 3px #ccc;
+}
+
+.chatlogs {
+    padding: 1px;
+    width: 100%;
+    height: 91%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background-image: url("img/2.png");
+    background-color: #f1ffe8;
+    background-blend-mode: luminosity;
+}
+
+.chatlogs::-webkit-scrollbar {
+    width: 10px;
+}
+
+.chatlogs::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: rgba(0,0,0,.1);
+}
+
+.chat {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.chat .user-photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-size: 40px 40px;
+}
+
+.chat .chat-message {
+    width: 80%;
+    padding: 5px 10px 5px 15px;
+    margin: 5px 10px 0;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 16px;
+    fy: "Eras Bold ITC", cursive;
+}
+
+.Bot .chat-message {
+    background: #1adda4;
+}
+
+.Bot .user-photo{
+    background-image: url(imgs/Bot-img.png);
+}
+
+.Client .chat-message {
+    background: #1ddced;
+    order: -1;
+}
+
+.Client .user-photo {
+    background-image: url(imgs/Client-img.png);
+}
+
+.chat-form {
+    margin-top: 20px;
+    display: flex;
+    align-items: flex-start;
+}
+
+textarea {
+    background: #fbfbfb;
+    width: 75%;
+    height: 50px;
+    border: 2px solid #eec3e9;
+    border-radius: 3px;
+    resize: none;
+    padding: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.chat-form textarea:focus {
+    background: #fff;
+}
+
+.chat-form button {
+
+    background: #1ddced;
+    padding: 5px 15px;
+    font-size: 30px;
+    color: #fff;
+    border: 1px;
+    margin: 0 10px;
+    border-radius: 20px;
+    box-shadow: 0 3px 0 #0eb2c1;
+    cursor: auto;
+
+    -webkit-transaction: background .2s ease;
+    -moz-transaction: backgroud .2s ease;
+    -o-transaction: backgroud .2s ease;
+}
+
+.chat-form button:hover {
+    background: #12b8c8;
+}
+</style>
+	</head>
+
+    <body>
+        <div class="chatbox"><img style="width:15%;" src="imgs/bo.png"><h2 style="margin : -11% 20% 0;">Moon</h2>
+        <div style="margin-left: 90%; margin-top: -8%;"><a style="
+        font-size: 20px;
+        text-decoration: none;
+        display: inline-block;" href="res/screen/ios/noname.html" target="_blank" ><i style=" font-family: Georgia; background-color: gray; padding: 4px; border-radius:50px; color: black;">
+        - i -</i></a>
+        </div>
+        <p style="margin-left:16%;"><b style ="color: green; font-size:22px;">● </b>Always Active</p>
+            <div class="chatlogs" id="chatlogs">
+            </div>
+            <div class="chat-form">
+                <textarea id="user_input"></textarea>
+                <button id="Send">Send</button>
+            </div>
+        </div>
+
+	  <script type="text/javascript">
+	  	let bot = new RiveScript();
+	  	let user_input = document.getElementById('user_input');
+	  	let chat_logs = document.getElementById('chatlogs');
+	  	
+	  	// Load an individual file.
+	  	bot.loadFile("brain/brain.rive", loading_brain_done, loading_brain_error);
+	  	bot.loadFile("bain/bangla.rive", loading_brain_done, loading_brain_error);
+	  	bot.loadFile("brain/star.rive", loading_brain_done, loading_brain_error);
+	  	
+	  	function loading_brain_done () {
+	  	console.log('loading Done');
+	  	bot.sortReplies();
+	  	}
+	  	function loading_brain_error () {
+	  	console.log('error loading')
+	  	}
+	  	
+	  	
+	  	document.body.onkeydown = function ClickEnter(e){
+	  	if(e.keyCode === 13){
+	  	SendMsg();
+	  	user_input.value = null;
+	  	}
+	  	};
+	  	document.getElementById("Send").onclick = function (){
+	  	SendMsg();
+	  	};
+	  	
+	  	function SendMsg() {
+	  	
+	  	//let regex =
+	  	///////////////test input-user if regex != [[:alpha:]]
+	  	if(user_input.value === ''){
+	  	return;
+	  	}else if(user_input.value === "\n"){
+	  	user_input.value = null;
+	  	return;
+	  	}
+	  	
+	  	//////////set new element chatBox Client
+	  	createBoxMsg("chat Client", user_input.value);
+	  	
+	  	///////////////set new element chatBox Bot
+	  	if( user_input.value === "video")creatBoxVideo("video.mp4");
+	  	else
+	  	createBoxMsg("chat Bot", bot.reply("local_user", user_input.value));
+	  	
+	  	
+	  	//////////update page
+	  	let objDiv = document.getElementById("chatlogs");
+	  	objDiv.scrollTop = objDiv.scrollHeight;
+	  	}
+	  	function createBoxMsg(for_, msg, string) {
+	  	
+	  	//////create element
+	  	let element = document.createElement('div');
+	  	let element_div = document.createElement('div');
+	  	let element_p = document.createElement('p');
+	  	
+	  	//////set attribute for element
+	  	element.setAttribute("class", for_);
+	  	element_div.setAttribute("class", "user-photo");
+	  	element_p.setAttribute("class", "chat-message");
+	  	
+	  	element_p.textContent = msg;
+	  	
+	  	////// append element to parent
+	  	element.appendChild(element_div);
+	  	element.appendChild(element_p);
+	  	
+	  	/////append parent to log chat
+	  	chat_logs.appendChild(element);
+	  	}
+	  	function creatBoxVideo(video) {
+	  	let chat_logs = document.getElementById('chatlogs');
+	  	//////create element
+	  	let element = document.createElement('div');
+	  	let element_div = document.createElement('div');
+	  	let element_p = document.createElement('video');
+	  	
+	  	//////set attribute for element
+	  	element.setAttribute("class", "chat Bot");
+	  	element_div.setAttribute("class", "user-photo");
+	  	element_p.setAttribute("class", "chat-message");
+	  	
+	  	element_p.src = video;
+	  	element_p.height = 200;
+	  	element_p.width = 300;
+	  	element_p.autoplay = true;
+	  	element_p.controls = true;
+	  	
+	  	////// append element to parent
+	  	element.appendChild(element_div);
+	  	element.appendChild(element_p);
+	  	
+	  	/////append parent to log chat
+	  	chat_logs.appendChild(element);
+	  	}
+	  </script>
+    </body>
+
+</html>
