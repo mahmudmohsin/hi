@@ -48,14 +48,14 @@
 		}
 		// speak window.speechSynthesis.speak(utter);
 		
+    		Core.speak(utter);
     	
 			//////////update page
 		let objDiv = document.getElementById("chatlogs");
 		objDiv.scrollTop = objDiv.scrollHeight;
 		}
 
-	Core.speak(utter);
-    	
+	
 
 		function createBoxMsg(for_, msg, string) {
 		//////create element
