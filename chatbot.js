@@ -55,7 +55,7 @@
 		objDiv.scrollTop = objDiv.scrollHeight;
 		}
 
-	Core.speak("What a mess!");
+	Core.speak(utter);
     	
 
 		function createBoxMsg(for_, msg, string) {
