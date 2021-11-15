@@ -53,7 +53,7 @@
 		let objDiv = document.getElementById("chatlogs");
 		objDiv.scrollTop = objDiv.scrollHeight;
 		}
-	Core.speak("What a mess!");
+	Core.speak(utterance);
     	
 	
 
