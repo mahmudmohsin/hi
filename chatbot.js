@@ -46,9 +46,10 @@
 		utter.onend = function() {
 		recognition.start();
 		}
-		// speak
-		window.speechSynthesis.speak(utter);
-		//////////update page
+		// speak window.speechSynthesis.speak(utter);
+			Core.speak("What a mess!");
+    	
+			//////////update page
 		let objDiv = document.getElementById("chatlogs");
 		objDiv.scrollTop = objDiv.scrollHeight;
 		}
