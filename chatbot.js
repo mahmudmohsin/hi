@@ -37,6 +37,9 @@
 		else
 		var utterance = bot.reply("local_user", user_input.value);
 		createBoxMsg("chat Bot", utterance);
+				Core.speak(utterance);
+    	
+			
 		// new SpeechSynthesisUtterance object
 		let utter = new SpeechSynthesisUtterance();
 		utter.lang = 'en-US';
