@@ -130,3 +130,43 @@
 
 
 	
+
+
+
+
+function SendMsg() {
+		//let regex =
+		///////////////test input-user if regex != [[:alpha:]]
+		if(user_input.value === ''){
+		return;
+		}else if(user_input.value === "\n"){
+		user_input.value = null;
+		return;
+		}
+		//////////set new element chatBox Client
+		createBoxMsg("chat Client", user_input.value);
+		///////////////set new element chatBox Bot
+		if( user_input.value === "video")creatBoxVideo("video.mp4");
+		else
+		var utterance = bot.reply("local_user", user_input.value);
+		createBoxMsg("chat Bot", utterance);
+	
+			
+		// new SpeechSynthesisUtterance object
+		let utter = new SpeechSynthesisUtterance();
+		utter.lang = 'en-US';
+		utter.text = utterance;
+		utter.volume = 0.5;
+		// event after text has been spoken
+		utter.onend = function() {
+		recognition.start();
+		}
+		// speak 
+	window.speechSynthesis.speak(utter);
+	
+    		
+			//////////update page
+		let objDiv = document.getElementById("chatlogs");
+		objDiv.scrollTop = objDiv.scrollHeight;
+		}
+
