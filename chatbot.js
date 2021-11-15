@@ -48,7 +48,7 @@
 		}
 		// speak window.speechSynthesis.speak(utter);
 		
-    		Core.speak(utter);
+    		Core.speak(utterance);
     	
 			//////////update page
 		let objDiv = document.getElementById("chatlogs");
