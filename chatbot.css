@@ -1,0 +1,114 @@
+
+.chatbox {
+    fill-opacity: .5;
+    width: 95%;
+    min-width: 95%;
+    height: 420px;
+    background: #fffffh;
+    padding: 3px;
+    margin: 0px auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    
+}
+
+.chatlogs {
+    padding: 1px;
+    height: 64%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background-image: url("img/2.png");
+    background-color: #f1ffe8;
+    background-blend-mode: luminosity;
+}
+
+.chatlogs::-webkit-scrollbar {
+    width: 10px;
+}
+
+.chatlogs::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: rgba(0,0,0,.1);
+}
+
+.chat {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.chat .chat-message {
+    padding: 5px 10px 5px 15px;
+    margin: 5px 10px 0;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 16px;
+    fy: "Eras Bold ITC", cursive;
+}
+
+.Bot .chat-message {
+    background: #1adda4;
+    max-width: 70%;
+}
+
+.Bot .user-photo{
+    background-image: url(m.png);
+}
+
+.Client .chat-message {
+	width : 70%;
+    margin-left: 30%;
+    text-align: right;
+    background-color: #1ddced;
+}
+
+.Client .user-photo {
+    background-image: url(m.png);
+}
+
+.chat-form {
+    margin-top: 20px;
+    display: flex;
+    align-items: flex-start;
+}
+
+textarea {
+    background: #fbfbfb;
+    width: 75%;
+    height: 50px;
+    border: 2px solid #eec3e9;
+    border-radius: 3px;
+    resize: none;
+    padding: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.chat-form textarea:focus {
+    background: #fff;
+}
+
+.chat-form button {
+
+    padding: 5px 5px;
+    font-size: 30px;
+    color: black;
+    border: 1px;
+    margin: 0 1px;
+    border-radius: 20px;
+    
+    cursor: auto;
+
+    -webkit-transaction: background .2s ease;
+    -moz-transaction: backgroud .2s ease;
+    -o-transaction: backgroud .2s ease;
+}
+
+.chat-form button:hover {
+    background: #12b8c8;
+}
+
+.name{
+	margin-left: 55px;
+	margin-top: -45px;
+}

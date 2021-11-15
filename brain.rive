@@ -1,0 +1,343 @@
+! version = 2.0
+
+
+// substitutions
+! sub i'm       = i am
+! sub i'd       = i would
+! sub i've      = i have
+! sub i'll      = i will
+! sub don't     = do not
+! sub isn't     = is not
+! sub you'd     = you would
+! sub you're    = you are
+! sub you've    = you have
+! sub you'll    = you will
+! sub he'd      = he would
+! sub he's      = he is
+! sub he'll     = he will
+! sub she'd     = she would
+! sub she's     = she is
+! sub she'll    = she will
+! sub they'd    = they would
+! sub they're   = they are
+! sub they've   = they have
+! sub they'll   = they will
+! sub we'd      = we would
+! sub we're     = we are
+! sub we've     = we have
+! sub we'll     = we will
+! sub whats     = what is
+! sub what's    = what is
+! sub what're   = what are
+! sub what've   = what have
+! sub what'll   = what will
+! sub can't     = can not
+! sub who's      = who is
+! sub who's     = who is
+! sub who'd     = who would
+! sub who'll    = who will
+! sub don't     = do not
+! sub didn't    = did not
+! sub it's      = it is
+! sub could've  = could have
+! sub couldn't  = could not
+! sub should've = should have
+! sub shouldn't = should not
+! sub would've  = would have
+! sub wouldn't  = would not
+! sub when's    = when is
+! sub when're   = when are
+! sub when'd    = when did
+! person i am = you are 
+! person you are = i am 
+! person i'm = you're 
+! person you're = I'm 
+! person my = your 
+! person your = my 
+! person you = I 
+! person i = you
+! sub ও = o
+
++ (hello|hlw|hi|moon|hi moon|hello moon|hlw moon)
+* <get name> != undefined => {random} 
+^ Hello there, <get name>!| 
+^ Nice to see you again, <get name>!| 
+^ Hey, <get name>!{/random} 
+- Who is there?
+//The % command is similar to + used for triggers, except it looks at the bot's previous response to the user 
+
++ i am*
+%who is there?
+//<formal> tag is used to capatialize first character of name provided by user 
+//In case you simply want to print name use  -Nice to meet you <star>
+- <set name=<formal>>Nice to meet you, <get name>.
+//You can stitch together multiple sentences which usert might ask in similar context
++ (what is my name|who am i|do you know my name|do you know who i am){weight=10}
+* <get name> == undefined => You haven't told me your name yet
+- Your name is <get name>.
+- You told me your name is <get name>.
+
++ this is*
+%who is there?
+//<formal> tag is used to capatialize first character of name provided by user 
+//In case you simply want to print name use  -Nice to meet you <star>
+- <set name=<formal>>Nice to meet you, <get name>.
+
+//You can stitch together multiple sentences which usert might ask in similar context
++ (what is my name|who am i|do you know my name|do you know who i am){weight=10}
+* <get name> == undefined => You haven't told me your name yet
+- Your name is <get name>.
+- You told me your name is <get name>.
+- Aren't you <get name>?
+
++ my name is*
+%who is there?
+//<formal> tag is used to capatialize first character of name provided by user 
+//In case you simply want to print name use  -Nice to meet you <star>
+- <set name=<formal>>Nice to meet you, <get name>.
+
+//You can stitch together multiple sentences which usert might ask in similar context
++ (what is my name|who am i|do you know my name|do you know who i am){weight=10}
+* <get name> == undefined => You haven't told me your name yet
+- Your name is <get name>.
+- You told me your name is <get name>.
+- Aren't you <get name>?
+
++ *
+% who is there?
+//<formal> tag is used to capatialize first character of name provided by user 
+//In case you simply want to print name use  -Nice to meet you <star>
+- <set name=<formal>>Nice to meet you, <get name>.
+
+//You can stitch together multiple sentences which usert might ask in similar context
++ (what is my name|who am i|do you know my name|do you know who i am){weight=10}
+* <get name> == undefined => You haven't told me your name yet
+- Your name is <get name>.
+- You told me your name is <get name>.
+- Aren't you <get name>?
+
+//Topics are logical groupings of triggers. When a user is in a topic,then only triggers that belong to that topic are matched
++ i hate you
+- You're really mean! I'm not talking again until you apologize.{topic=sorry}
+
+> topic sorry
+
+  // This will match if the word "sorry" exists anywhere in the message
+  + [*] sorry [*]
+  - It's OK, I'll forgive you!{topic=random}
+
+  + *
+  - Nope, not until you apologize.
+  - Say you're sorry!
+  - Apologize!
+
+< topic
+
+// To gain botmaster power, say "I am your master"...
++ i am your master
+- really if you are my master then you must know the password
+
+// And then enter the botmaster password...
++ *
+% really if you are my master then you must know the password
+* <star> == yes this is mahmud mohsin => Yah! right, you are my master<set master=true>
+- No! you are not my master. You are a user.
+
+// After correct password is provided, bot will follow your instructions
++ sing a song
+* <get master> == true => laaaaaaalaaaaalalal
+- You're not my master so i wont sing! 
+
++ sing another song
+* <get master> == true => mmhuuuuuuhmmmmm
+- You're not my master so i wont sing!
+
++ bye bot
+- byeeee..Have a good day sayonara!!
+
+
+// A lot of colors! 
+! array colors = red blue green yellow orange cyan fuchsia magenta
+ ^ light red|dark red|light blue|dark blue|light yellow|dark yellow 
+^ light orange|dark orange|light cyan|dark cyan|light fuchsia 
+^ dark fuchsia|light magenta|dark magenta 
+^black gray white silver 
+^ light gray|dark gray
+
++ what color is my (@colors) *
+- Your <star2> is <star1>, silly! 
+- Do I look dumb to you? It's <star1>! 
+
++ i am wearing a (@colors) shirt
+ - Do you really like <star>?
+
+ + * perl script
+ - You need Perl to run a Perl script.
+
++ how [are] you
+ - I'm great, how are you?
+ - I'm good, you?
+ - Good :) you? 
+- Great! You?
+ - I'm fine, thanks for asking!
+
++ tell me a poem 
+- Little Miss Muffit sat on her tuffet,\n 
+^ In a nonchalant sort of way.\n
+^ With her forcefield around her,\n 
+^ The Spider, the bounder,\n 
+^ Is not in the picture today.
+
++ (what are you|who are you)
+- I am an artificial intelligence programmed.
+
++ what is up 
+- Not much, you? 
+- nm, you? 
+- Not a lot, you? 
+
++ you are a bot 
+- How did you know I'm a machine?
+
++ where is *
+- Where it belongs <star1>.
+- Where you left it <star1>.
+- Where the heart is <star1>.
+
++ who is * 
+- I don't know who <star> is.
+
++ what is your (home|office|cell) number 
+- You can reach me at: 1 (800) 555-1234. 
+
++ i am (really|very|super) tired 
+- I'm sorry to hear that you are <star> tired. 
+
++ i (like|love) the color * 
+- What a coincidence! I <star1> that color too! 
+- I also have a soft spot for the color <star2>! 
+- Really? I <star1> the color <star2> too! 
+- Oh I <star1> <star2> too!
+
++ i (will|will not) * 
+- It doesn't matter to me whether you <star2> or not.
+
++ [*] the machine [*] 
+- How do you know about the machine!?
+
++ i have a dog 
+- What color is it? 
+
++ (@colors) 
+% what color is it 
+- That's a silly color.
+
++ i am * years old
+//<formal> tag is used to capatialize first character of name provided by user 
+- <set age=<formal>> I remember it you are <get age> years old.
+//You can stitch together multiple sentences which usert might ask in similar context
++ (what is my age|how old am i|do you know my age|do you know what is my age){weight=10}
+* <get age> == undefined => You haven't told me your age.
+- You are <get age> years old.
+- You told me you are <get age> years old.
+- Aren't you <get age> years old?
+
++ my name is * 
+
+* <formal> == <bot name> => Wow, we have the same name!<set name=<formal>> 
+* <get name> == undefined => <set name=<formal>>Nice to meet you! <get name>.
+- <set oldname=<get name>><set name=<formal>> 
+^ I thought your name was <get oldname>?
+
++ what am i old enough to do * 
+<get age> == undefined => I don't know how old you are. 
+* <get age> > 25 => You can do anything you want. If is it halal.
+* <get age> == 25 => You're old enough to rent a car with no extra fees. 
+* <get age> > 21 => You're old enough to 
+* <get age> == 21 => You're exactly old e
+* <get age> > 18 => You're old enough to g
+* <get age> == 18 => You're exactly old enough to g
+- You're not old enough to do much of anything yet.
+
++ say *
+- Umm... <person>
+
++ i bought a [new] * 
+- Oh? What color is your new <star>? 
+
++ (@colors) 
+% oh what color is your new * 
+- <star> is a pretty color for a <botstar>.
+
+// If the user repeats the bot's previous message 
++ <reply>
+- Don't repeat what I say. 
+
+// If the user keeps repeating themselves over and over. 
++ <input>
+- that is the third time you have repeated yourself
++ <input>
+% that is the third time you have repeated yourself
+- please dont repeat yourself 
+
++ <input>
+% please dont repeat yourself
+- if you repeat yourself again i will stop talking
+
++ <input>
+% if you repeat yourself again i will stop talking
+- That's it. I'm not talking.{topic=sorry}
+
+// An example that uses both tags 
++ why did you say that 
+- I said, "<reply>", because you said, "<input>".
+
++ am i your master 
+* <id> == <bot master> => Yes, you are. Hi Mahmud Mohsin! 
+- No, <bot master> is my master, and you are <id>.
+
++ what is your name
+- You can call me <bot name>. 
+- I am <bot name>.
+
++ tell me about yourself 
+- I am <bot name>, an Artificial Intelligence written by <bot master>. 
+
++ (what do you know about me|[*] who am i)
+- I know your name is <get name> and you are <get age> years old.
+
++ give me 5 points 
+- <add points=>You have been given 5 points. Your balance is: <get points>.
+
++ play hangman 
+- {topic=hangman}Now playing hangman. Type "quit" to quit. 
+> topic hangman 
+
++ quit 
+- Quitting the game.{topic=random} 
+
++ * 
+- <call>hangman <star></call> 
+< topic
+
++ * or something{weight=10} 
+- Or something. <@> 
+
++ hlw
+- Hi there!{weight=20} 
+- Hey!{weight=10} 
+- Howdy!
+
++ your * 
+- I think you mean to say "you are" or "you're", not "your". {@you are <star>}
+
+// Call a macro named "reverse" and give it an argument 
+
++ say * to me in reverse 
+- <call>reverse <star></call>
+
+
+
+
+! var name= Moon
+! var master= Mahmud Mohsin

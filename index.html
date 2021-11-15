@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="quiza.css">
+<link rel="stylesheet" href="dropdown.css">
+<link rel="stylesheet" href="chatbot.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="rsjs.js"></script>
+<script src="rivescript.js"></script>
+<script src="jquery.js"></script>
+
+</head>
+<body>
+<div class="top">
+<div id="mySdnav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeMyNav()">&times;</a>
+  <a href="#">SSC</a>		
+  <a href="chatbot.html">Chatbot</a>		
+  <a href="#">Learning English</a>		
+  
+</div>
+
+<ul class="topnav">
+	<li><a href="index.html">Home</a></li>
+	<li><a href="#news">News</a></li>
+	<li><a href="#contact">Contact</a></li>
+	<li><a href="#about">About</a></li>
+	<li class="icon">
+		<a style="background-color: green" href="javascript:void(0);" onclick="myHomenav()">☰</a></li>
+	<li class="icn"><a onclick="openMyNav()">Subjects☟</a></li>
+	</ul>
+</div>
+</br>
+<div class="header">
+<img src="mahmud-mohsin.png">
+</div>
+
+<div class="row">
+<div id="g" class="col-3 col-m-3 menu">
+<ul>
+<li class="m"><a href="" >SSC</a></li>
+<li class="m"><a class="active" >Chatbot</a></li>
+<li class="m"><a href="" >Learning English</a></li>
+</ul>
+</div>
+
+
+
+
+<div class="col-6 col-m-9">
+
+<div class="chatbox">
+<img style="width:50px;" src="m.png">
+<div class="name">
+<h2>SaBa</h2>
+        
+        <p><b style ="color: green;">● </b>Always Active</p>
+        </div>
+            <div class="chatlogs" id="chatlogs">
+            </div>
+            <div class="chat-form">
+                <textarea id="user_input"></textarea>
+                <button id="Send" class="fa fa-send"></button>
+                <button id="btnGiveCommand" class="fa fa-microphone"></button>
+                
+            </div>
+        </div>
+        
+        <br><br>
+        <span id='message'></span>
+        <br><br>
+<script src="chatbot.js"></script>
+<script src="recognition.js"></script>
+
+</div>
+
+<div class="col-3 col-m-12">
+<div class="aside">
+<button class="dropbtn">Author</button>
+</br></br>
+<img class="mohsinimg" src="mohsin.jpg">
+<h2>Mahmud Mohsin</h2>
+</div></br>
+<div class="aside">
+<button class="dropbtn">Subscribe & Follow</button>
+</br></br>
+<a id="fa" href="https://Facebook.com/mahmudmohsin2" target="blank" class="fa fa-facebook"></a>
+<a id="fa" href="https://twitter.com/mahmudmohsinm" target="blank" class="fa fa-twitter"></a>
+<a id="fa" href="https://youtube.com/channel/UCCqc1laMznPUEuAbJTnvMQg" target="blank" class="fa fa-youtube-play"></a>
+<a id="fa" href="https://instragam.com/mahmud__mohsin" target="blank" class="fa fa-instagram"></a>
+</div>
+</div>
+</div>
+<div class="footer">
+<p>© 2019 - All Rights Reserved. Designed & Developed by Mahmud Mohsin</p>
+</div>
+</body>
+</html>
