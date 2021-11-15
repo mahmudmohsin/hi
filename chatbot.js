@@ -46,8 +46,7 @@
 		utter.onend = function() {
 		recognition.start();
 		}
-		// speak 
-			window.speechSynthesis.speak(utter);
+		// speak window.speechSynthesis.speak(utter);
 		
     	
 			//////////update page
