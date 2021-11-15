@@ -119,3 +119,8 @@
 		recognition.start();
 		btnGiveCommand.style.background='#39c81f';
 		});
+
+
+
+	Core.speak("What a mess!");
+    	
