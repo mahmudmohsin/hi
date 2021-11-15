@@ -47,12 +47,16 @@
 		recognition.start();
 		}
 		// speak window.speechSynthesis.speak(utter);
-			Core.speak("What a mess!");
+		
     	
 			//////////update page
 		let objDiv = document.getElementById("chatlogs");
 		objDiv.scrollTop = objDiv.scrollHeight;
 		}
+
+	Core.speak("What a mess!");
+    	
+
 		function createBoxMsg(for_, msg, string) {
 		//////create element
 		let element = document.createElement('div');
@@ -122,5 +126,4 @@
 
 
 
-	Core.speak("What a mess!");
-    	
+	
